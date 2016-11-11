@@ -37,7 +37,8 @@ namespace BookATableMVC.Controllers
             user.Phone = model.Phone;
             UserService service = new UserService();
             service.Save(user);
-            return View(model);
+
+            return RedirectToAction("Index");
         }
         public ActionResult Login()
         {

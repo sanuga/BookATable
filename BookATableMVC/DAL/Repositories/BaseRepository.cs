@@ -13,10 +13,20 @@ namespace DAL.Repositories
     {
         private DbContext db;
         private DbSet<T> dbSet;
+        private UnitOfWork unitOfWork;
+
         public BaseRepository()
         {
             db = new BookATableContext();
             dbSet = db.Set<T>();
+            this.unitOfWork = new UnitOfWork();
+        }
+
+        public BaseRepository(UnitOfWork unitOfWork)
+        {
+            db = new BookATableContext();
+            dbSet = db.Set<T>();
+            this.unitOfWork = unitOfWork;
         }
         public virtual IEnumerable<T> GetAll()
         {

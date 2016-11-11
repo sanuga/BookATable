@@ -10,4 +10,5 @@ namespace DAL.Repositories
     class RolesRepository:BaseRepository<Role>
     {
     }
+
 }

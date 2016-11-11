@@ -10,10 +10,20 @@ namespace BookATableMVC.Services.EntityServices
 {
     public class BaseService<T> where T: BaseEntity, new()
     {
-        private BaseRepository<T> Repository { get; set; }
+        private BaseRepository<T> Repository;
+        protected UnitOfWork unitOfWork;
+
         public BaseService()
         {
-            this.Repository = new BaseRepository<T>();
+
+            this.Repository = new BaseRepository<T>(this.unitOfWork);
+        }
+
+        public BaseService(UnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+            this.Repository = new BaseRepository<T>(this.unitOfWork);
+
         }
         public IEnumerable<T> GetAll()
         {

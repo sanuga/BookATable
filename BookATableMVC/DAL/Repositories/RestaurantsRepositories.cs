@@ -7,7 +7,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class RestaurantsRepositories:BaseRepository<Restaurant>
+    public class RestaurantsRepositories : BaseRepository<Restaurant>
     {
+        public RestaurantsRepositories() : base()
+        {
+
+        }
+
+        public RestaurantsRepositories(UnitOfWork unitOfWork) : base(unitOfWork)
+        {
+
+        }
     }
 }

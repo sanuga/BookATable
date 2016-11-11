@@ -7,7 +7,18 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ReservationsRepository:BaseRepository<Reservation>
+    public class ReservationsRepository : BaseRepository<Reservation>
     {
+        public ReservationsRepository() : base()
+        {
+
+        }
+
+        public ReservationsRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        {
+
+        }
     }
+
+
 }
