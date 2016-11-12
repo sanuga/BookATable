@@ -64,6 +64,7 @@
     <Compile Include="Repositories\ReservationsRepository.cs" />
     <Compile Include="Repositories\RestaurantsRepositories.cs" />
     <Compile Include="Repositories\RolesRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup />

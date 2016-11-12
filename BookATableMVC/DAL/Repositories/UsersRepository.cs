@@ -7,7 +7,16 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UsersRepository:BaseRepository<User>
+    public class UsersRepository : BaseRepository<User>
     {
+        public UsersRepository() : base()
+        {
+
+        }
+
+        public UsersRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        {
+
+        }
     }
 }
