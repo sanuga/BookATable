@@ -5,10 +5,20 @@
 }
 
 <h2>Index</h2>
+@Html.ActionLink("Add New", "Edit", "Restaurants");
 
-<p>
-    @Html.ActionLink("Add New", "Edit")
-</p>
+<form action="\Restaurants\Index">
+    <p style="font-weight:bold;">
+        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" })
+    </p>
+
+
+
+    <input type="submit" value="Search" />
+
+</form>
+
+
 <table class="table">
     <tr>
     <tr>

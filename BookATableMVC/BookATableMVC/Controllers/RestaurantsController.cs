@@ -13,13 +13,35 @@ namespace BookATableMVC.Controllers
     public class RestaurantsController : Controller
     {
         // GET: Restaurants
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             RestaurantsRepositories repository = new RestaurantsRepositories();
             RestaurantListViewModel model = new RestaurantListViewModel();
-            model.Restaurants = repository.GetAll().ToList();
+
+            List<Restaurant> restaurants = null;
+
+
+            ViewBag.searchString = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                model.Restaurants = repository.GetAll(r => r.Name.Contains(searchString)).ToList();
+
+            }
+            else
+            {
+                model.Restaurants = repository.GetAll().ToList();
+            }
+
+
+
+
+
+
             return View(model);
-        }
+        
+    }
         //GET Action
         public ActionResult Edit(int? id)
         {
