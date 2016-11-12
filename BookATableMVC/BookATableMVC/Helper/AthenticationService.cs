@@ -23,7 +23,7 @@ namespace BookATableMVC.Helper
         public static User LoggedUser
         {
             get
-            {
+            {                
                 return AuthenticationServiceInstance.LoggedUser;
             }
         }
