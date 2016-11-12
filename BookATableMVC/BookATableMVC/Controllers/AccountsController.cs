@@ -70,7 +70,7 @@ namespace BookATableMVC.Controllers
 
             User u = new User();
             UserService usersService = new UserService();
-
+            
             u.Id = model.Id;
             u.Name = model.Name;
             u.Password = model.Password;
