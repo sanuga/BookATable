@@ -25,6 +25,7 @@ namespace BookATableMVC.Controllers
         [HttpPost]
         public ActionResult Register(UserAddEditViewModel model)
         {
+            model.Password = Guid.NewGuid().ToString();
             TryUpdateModel(model);
             if (!ModelState.IsValid)
             {
@@ -35,10 +36,52 @@ namespace BookATableMVC.Controllers
             user.Password = model.Password;
             user.Name = model.Name;
             user.Phone = model.Phone;
+
             UserService service = new UserService();
             service.Save(user);
+
+            EmailService.SendRegistrationEmail(user);
+
             return View(model);
         }
+        public ActionResult Verify(string guid)
+        {
+            UserAddEditViewModel model = new UserAddEditViewModel();
+
+
+            UserService usersService = new UserService();
+            User u = new User();
+            u = usersService.GetByGuid(guid);
+
+            model.Id = u.Id;
+            model.Name = u.Name;
+            model.Email = u.Email;
+            model.Password = u.Password;
+            model.Phone = u.Phone;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Verify()
+        {
+            UserAddEditViewModel model = new UserAddEditViewModel();
+            TryUpdateModel(model);
+
+            User u = new User();
+            UserService usersService = new UserService();
+
+            u.Id = model.Id;
+            u.Name = model.Name;
+            u.Password = model.Password;
+            u.Email = model.Email;
+            u.Phone = model.Phone;
+
+            usersService.Save(u);
+            return RedirectToAction("Login","Accounts");
+        }
+        
+
         public ActionResult Login()
         {
             UserAuthenticationViewModel model = new UserAuthenticationViewModel();
