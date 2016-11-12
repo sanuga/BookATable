@@ -9,15 +9,15 @@ namespace DAL.Repositories
 {
     class RolesRepository:BaseRepository<Role>
     {
-        public RolesRepository() : base()
-        {
+        //public RolesRepository() : base()
+        //{
 
-        }
+        //}
 
-        public RolesRepository(UnitOfWork unitOfWork) : base(unitOfWork)
-        {
+        //public RolesRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        //{
 
-        }
+        //}
 
     }
 
