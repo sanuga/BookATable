@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -46,10 +47,14 @@ namespace DAL.Repositories
         }
         protected virtual void Insert(T entity)
         {
-            entity.CreatedAt = DateTime.Now;
-            entity.UpdatedAt = DateTime.Now;
-            dbSet.Add(entity);
-            db.SaveChanges();
+          
+                entity.CreatedAt = DateTime.Now;
+                entity.UpdatedAt = DateTime.Now;
+                dbSet.Add(entity);
+                db.SaveChanges();
+            
+            
+            
         }
         protected virtual void Update(T entity)
         {

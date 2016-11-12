@@ -23,8 +23,9 @@ namespace DAL.Entites
         public DateTime? OpenHour { get; set; }
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime? CloseHour { get; set; } 
-        
+        public DateTime? CloseHour { get; set; }
+
+        public string ImagePath { get; set; }
         public int? ManagerId { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
         

@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -71,6 +71,11 @@
                     @Html.EditorFor(model => model.CloseHour, new { htmlAttributes = new { @class = "form-control col-md-2" } })
                     @Html.ValidationMessageFor(model => model.CloseHour, "", new { @class = "text-danger" })
                 </div>
+            </div>
+            <div class="right">
+                <img class="photo" src="~/Uploads/@Model.ImagePath" alt="Image" />
+                @Html.TextBoxFor(model => model.ImageUpload, new { htmlAttributes = new { @class = "form-control", @id = "image-upload" }, type = "file" })
+                <label>You can upload images with .jpg extension</label>
             </div>
 
             <div class="form-group">

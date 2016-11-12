@@ -9,5 +9,14 @@ namespace DAL.Repositories
 {
     public class AuthControllerRepository:BaseRepository<AuthController>
     {
+        public AuthControllerRepository() : base()
+        {
+
+        }
+
+        public AuthControllerRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        {
+
+        }
     }
 }
