@@ -21,14 +21,24 @@
 
 <table class="table">
     <tr>
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
+    <tr>    
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>         
+        <th>
+            @Html.ActionLink("Address", "Index", new { sortOrder = ViewBag.AddressSortParm })
+        </th> 
         <th>Email</th>
         <th>Phone</th>
-        <th>Capacity</th>
-        <th>Open Hour</th>
-        <th>Close Hour</th>
+        <th>
+            @Html.ActionLink("Capacity", "Index", new { sortOrder = ViewBag.CapacitySortParm })
+        </th> 
+        <th>
+            @Html.ActionLink("Open Hour", "Index", new { sortOrder = ViewBag.OpenHourSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Close Hour", "Index", new { sortOrder = ViewBag.CloseHourSortParm })
+        </th> 
         <th>Image</th>
         <th>Actions</th>
     </tr>

@@ -7,16 +7,18 @@ using DAL.Repositories;
 using DAL.Entites;
 using BookATableMVC.ViewModels.Restaurants;
 using System.IO;
+using BookATableMVC.Helper.EntityServices;
 
 namespace BookATableMVC.Controllers
 {
     public class RestaurantsController : Controller
     {
         // GET: Restaurants
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string sortOrder)
         {
             RestaurantsRepositories repository = new RestaurantsRepositories();
             RestaurantListViewModel model = new RestaurantListViewModel();
+            model.Restaurants = new RestaurantService().GetAll().ToList();
 
             List<Restaurant> restaurants = null;
 
@@ -34,10 +36,46 @@ namespace BookATableMVC.Controllers
                 model.Restaurants = repository.GetAll().ToList();
             }
 
-
-
-
-
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.OpenHourSortParm = sortOrder == "Open" ? "open_desc" : "Open";
+            ViewBag.CloseHourSortParm = sortOrder == "Close" ? "close_desc" : "Close";
+            ViewBag.AddressSortParm = sortOrder == "Address" ? "address_desc" : "Address";
+            ViewBag.CapacitySortParm = sortOrder == "Capacity" ? "capacity_desc" : "Capacity";
+           
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Name).ToList();
+                    break;
+                case "Open":
+                    model.Restaurants = model.Restaurants.OrderBy(s => s.OpenHour).ToList();
+                    break;
+                case "open_desc":
+                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.OpenHour).ToList();
+                    break;
+                case "Close":
+                    model.Restaurants = model.Restaurants.OrderBy(s => s.CloseHour).ToList();
+                    break;
+                case "close_desc":
+                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.CloseHour).ToList();
+                    break;
+                case "Address":
+                    model.Restaurants = model.Restaurants.OrderBy(s => s.Address).ToList();
+                    break;
+                case "address_desc":
+                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Address).ToList();
+                    break;
+                case "Capacity":
+                    model.Restaurants = model.Restaurants.OrderBy(s => s.Capacity).ToList();
+                    break;
+                case "capacity_desc":
+                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Capacity).ToList();
+                    break;
+                default:
+                    model.Restaurants = model.Restaurants.OrderBy(s => s.Name).ToList();
+                    break;
+            }
+            
 
             return View(model);
         
