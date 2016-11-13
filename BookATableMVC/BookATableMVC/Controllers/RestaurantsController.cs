@@ -9,11 +9,13 @@ using BookATableMVC.ViewModels.Restaurants;
 using System.IO;
 using BookATableMVC.Helper.EntityServices;
 using BookATableMVC.ViewModels;
+using BookATableMVC.Filters;
 
 namespace BookATableMVC.Controllers
 {
     public class RestaurantsController : Controller
     {
+        [AuthenticationFilter]
         // GET: Restaurants
         public ActionResult Index(string searchString, string sortOrder,int? page)
         {
@@ -82,6 +84,7 @@ namespace BookATableMVC.Controllers
             return View(model);
         
     }
+        [AuthenticationFilter]
         //GET Action
         public ActionResult Edit(int? id)
         {
@@ -112,6 +115,7 @@ namespace BookATableMVC.Controllers
             model.ImagePath = restaurant.ImagePath;
             return View(model);
         }
+        
         [HttpPost]
         public ActionResult Edit()
         {
@@ -169,8 +173,8 @@ namespace BookATableMVC.Controllers
             service.Save(restaurant);
             return RedirectToAction("Index");
         }
-    
-    public ActionResult Delete(int? id)
+        
+        public ActionResult Delete(int? id)
     {
 
         if (!id.HasValue)

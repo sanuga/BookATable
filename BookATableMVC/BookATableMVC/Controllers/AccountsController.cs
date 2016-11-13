@@ -84,9 +84,10 @@ namespace BookATableMVC.Controllers
         }
         
 
-        public ActionResult Login()
+        public ActionResult Login (string redirectUrl)
         {
             UserAuthenticationViewModel model = new UserAuthenticationViewModel();
+            model.RedirectUrl = redirectUrl;
             return View(model);
         }
         [HttpPost]

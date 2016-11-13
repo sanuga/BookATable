@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DAL.Entites;
 using BookATableMVC.Helper;
 using BookATableMVC.Services.EntityServices;
+using BookATableMVC.Filters;
 
 namespace BookATableMVC.Controllers
 {
@@ -37,6 +38,7 @@ namespace BookATableMVC.Controllers
             
             return View(model);
         }
+        [AuthenticationFilter]
         [HttpPost]
         public ActionResult Edit(UserAddEditViewModel model)
         {

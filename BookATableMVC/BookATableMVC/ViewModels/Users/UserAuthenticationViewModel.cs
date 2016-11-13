@@ -15,5 +15,6 @@ namespace BookATableMVC.ViewModels.Users
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}$",ErrorMessage="Invalid password!")]
         [StringLength(30, MinimumLength = 8)]
         public string Password { get; set; }
+        public string RedirectUrl { get; set; }
     }
 }
