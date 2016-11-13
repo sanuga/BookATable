@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationService.cs" />
+    <Compile Include="EntityServices\BaseService.cs" />
+    <Compile Include="EntityServices\RestaurantService.cs" />
+    <Compile Include="EntityServices\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

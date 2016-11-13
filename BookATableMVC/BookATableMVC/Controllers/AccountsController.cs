@@ -70,15 +70,17 @@ namespace BookATableMVC.Controllers
 
             User u = new User();
             UserService usersService = new UserService();
-            
+
             u.Id = model.Id;
             u.Name = model.Name;
             u.Password = model.Password;
             u.Email = model.Email;
             u.Phone = model.Phone;
+            u.IsVerify = true;
+
 
             usersService.Save(u);
-            return RedirectToAction("Login","Accounts");
+            return RedirectToAction("Login", "Accounts");
         }
         
 
