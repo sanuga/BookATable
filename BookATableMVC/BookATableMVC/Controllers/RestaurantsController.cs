@@ -177,14 +177,14 @@ namespace BookATableMVC.Controllers
         {
             return RedirectToAction("Index");
         }
-        RestaurantsRepositories repo = new RestaurantsRepositories();
+            RestaurantService service = new RestaurantService();
         Restaurant model = new Restaurant();
-        model = repo.GetById(id.Value);
+        model = service.GetById(id.Value);
         if (model == null || model.IsDeleted)
         {
             return RedirectToAction("Index");
         }
-        repo.Delete(model);
+        service.Delete(model);
         return RedirectToAction("Index");
     }
 }
