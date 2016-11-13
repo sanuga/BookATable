@@ -10,5 +10,6 @@ namespace BookATableMVC.ViewModels.Restaurants
     public class RestaurantListViewModel
     {
         public List<Restaurant> Restaurants { get; set; }
+        public PagerViewModel  Pager { get; set; }
     }
 }

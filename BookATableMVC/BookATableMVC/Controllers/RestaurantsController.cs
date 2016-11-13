@@ -8,19 +8,21 @@ using DAL.Entites;
 using BookATableMVC.ViewModels.Restaurants;
 using System.IO;
 using BookATableMVC.Helper.EntityServices;
+using BookATableMVC.ViewModels;
 
 namespace BookATableMVC.Controllers
 {
     public class RestaurantsController : Controller
     {
         // GET: Restaurants
-        public ActionResult Index(string searchString, string sortOrder)
+        public ActionResult Index(string searchString, string sortOrder,int? page)
         {
             RestaurantsRepositories repository = new RestaurantsRepositories();
             RestaurantListViewModel model = new RestaurantListViewModel();
             model.Restaurants = new RestaurantService().GetAll().ToList();
 
-            List<Restaurant> restaurants = null;
+            model.Pager = new PagerViewModel(model.Restaurants.Count(), page);
+            model.Restaurants = model.Restaurants.Skip((model.Pager.CurrentPage - 1) * model.Pager.ItemsPerPage).Take(model.Pager.ItemsPerPage).ToList();
 
 
             ViewBag.searchString = searchString;
