@@ -17,7 +17,7 @@ namespace BookATableMVC.Controllers
         // GET: Restaurants
         public ActionResult Index(string searchString, string sortOrder,int? page)
         {
-            RestaurantsRepositories repository = new RestaurantsRepositories();
+            
             RestaurantListViewModel model = new RestaurantListViewModel();
             model.Restaurants = new RestaurantService().GetAll().ToList();
 
@@ -26,16 +26,16 @@ namespace BookATableMVC.Controllers
 
 
             ViewBag.searchString = searchString;
-
+            RestaurantService service = new RestaurantService();
             if (!String.IsNullOrEmpty(searchString))
             {
 
-                model.Restaurants = repository.GetAll(r => r.Name.Contains(searchString)).ToList();
+                model.Restaurants =service.GetAll(r => r.Name.Contains(searchString)).ToList();
 
             }
             else
             {
-                model.Restaurants = repository.GetAll().ToList();
+                model.Restaurants = service.GetAll().ToList();
             }
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -92,8 +92,8 @@ namespace BookATableMVC.Controllers
             }
             else
             {
-                RestaurantsRepositories repository = new RestaurantsRepositories();
-                restaurant = repository.GetById(id.Value);
+                RestaurantService service = new RestaurantService();
+                restaurant = service.GetById(id.Value);
                 if (restaurant == null)
                 {
                     return RedirectToAction("Index");
@@ -116,7 +116,7 @@ namespace BookATableMVC.Controllers
         public ActionResult Edit()
         {
             RestaurantAddEditViewModel model = new RestaurantAddEditViewModel();
-            RestaurantsRepositories repository = new RestaurantsRepositories();
+            RestaurantService service = new RestaurantService();
             TryUpdateModel(model);
             if (!ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace BookATableMVC.Controllers
             }
             else
             {
-                restaurant = repository.GetById(model.Id);
+                restaurant = service.GetById(model.Id);
                 if (restaurant == null)
                 {
                     return RedirectToAction("List");
@@ -166,7 +166,7 @@ namespace BookATableMVC.Controllers
             restaurant.CloseHour = model.CloseHour;
             restaurant.ImagePath = model.ImagePath;
 
-            repository.Save(restaurant);
+            service.Save(restaurant);
             return RedirectToAction("Index");
         }
     
