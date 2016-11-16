@@ -21,7 +21,7 @@ namespace BookATableMVC.App_Start
 
             foreach (Type T in assembly.GetTypes())
             {
-                if (typeof(Controller).IsAssignableFrom(T))
+                if (typeof(Controller).IsAssignableFrom(T) && !T.IsGenericType && !T.IsAbstract)
                 {
                     AuthController controller = new AuthController();
                     controller.Name = T.Name;

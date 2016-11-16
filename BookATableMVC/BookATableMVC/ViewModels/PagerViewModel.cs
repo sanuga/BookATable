@@ -7,13 +7,29 @@ namespace BookATableMVC.ViewModels
 {
     public class PagerViewModel
     {
-        
 
-        public PagerViewModel(int totalItems, int? page,int itemsPerPage = 10)
+        public string Prefix { get; set; }
+        public string Action { get; set; }
+        public string Controller { get; set; }
+        public int TotalItems { get; set; }
+        public int CurrentPage { get; set; }
+        public int? PageSize { get; set; }
+        public int TotalPages { get; set; }
+        public int StartPage { get; set; }
+        public int EndPage { get; set; }
+
+        public PagerViewModel() : this(0, 1, 10, "", "", "")
         {
-          
 
-            var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)itemsPerPage);
+        }
+        
+        public PagerViewModel(int totalItems, int? page, int? pageSize, string prefix, string action, string controller)
+        {
+            if (pageSize == null || PageSize == 0)
+                pageSize = 10;
+
+            // calculate total, start and end pages
+            var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             var currentPage = page != null ? (int)page : 1;
             var startPage = currentPage - 5;
             var endPage = currentPage + 4;
@@ -33,20 +49,18 @@ namespace BookATableMVC.ViewModels
 
             TotalItems = totalItems;
             CurrentPage = currentPage;
-            ItemsPerPage = itemsPerPage;
+            PageSize = pageSize;
             TotalPages = totalPages;
             StartPage = startPage;
             EndPage = endPage;
-           
-           
+            Prefix = prefix;
+            Action = action;
+            Controller = controller;
         }
 
-        
-        public int TotalItems { get; set; }
-        public int CurrentPage { get; set; }
-        public int ItemsPerPage { get; set; }
-        public int TotalPages { get; set; }
-        public int StartPage { get; set; }
-        public int EndPage { get; set; }
     }
-}
+
+        
+        
+    }
+

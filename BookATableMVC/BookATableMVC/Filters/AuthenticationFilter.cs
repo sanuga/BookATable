@@ -1,4 +1,5 @@
 ﻿using BookATableMVC.Helper;
+using DAL.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,9 @@ namespace BookATableMVC.Filters
         {
             if (AthenticationService.LoggedUser == null)
             {
-                filterContext.HttpContext.Response.Redirect("~/Accounts/Login?redirectUrl=" + filterContext.HttpContext.Request.Url);
-                filterContext.Result = new EmptyResult();
+                //filterContext.HttpContext.Response.Redirect("~/Accounts/Login?redirectUrl=" + filterContext.HttpContext.Request.Url);
+                filterContext.Result = new EmptyResult();              
             }
-
         }
     }
 }

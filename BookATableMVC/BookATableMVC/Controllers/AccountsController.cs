@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DAL.Entites;
 using BookATableMVC.Services.EntityServices;
 using BookATableMVC.Helper;
+using BookATableMVC.Filters;
 
 namespace BookATableMVC.Controllers
 {
@@ -83,13 +84,13 @@ namespace BookATableMVC.Controllers
             return RedirectToAction("Login", "Accounts");
         }
         
-
         public ActionResult Login (string redirectUrl)
         {
             UserAuthenticationViewModel model = new UserAuthenticationViewModel();
             model.RedirectUrl = redirectUrl;
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Login(UserAuthenticationViewModel model)
         {

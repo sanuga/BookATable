@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-@Html.ActionLink("Add New", "Edit", "Restaurants");
+@Html.ActionLink("Add New", "Edit", "Restaurants")
 
 <form action="\Restaurants\Index">
     <p style="font-weight:bold;">
@@ -81,27 +81,27 @@
         @if (Model.Pager.CurrentPage > 1)
         {
             <li>
-                <a href="~/Admin/List">First</a>
+                <a href="~/Restaurants/Index">First</a>
             </li>
             <li>
-                <a href="~/Admin/List?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                <a href="~/Restaurants/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
             </li>
         }
 
         @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
         {
             <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                <a href="~/Admin/List?page=@page">@page</a>
+                <a href="~/Restaurants/Index?page=@page">@page</a>
             </li>
         }
 
         @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
         {
             <li>
-                <a href="~/Admin/List?page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                <a href="~/Restaurants/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
             </li>
             <li>
-                <a href="~/Admin/List?page=@(Model.Pager.TotalPages)">Last</a>
+                <a href="~/Restaurants/Index?page=@(Model.Pager.TotalPages)">Last</a>
             </li>
         }
     </ul>

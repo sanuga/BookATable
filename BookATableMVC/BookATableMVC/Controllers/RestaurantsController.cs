@@ -13,6 +13,7 @@ using BookATableMVC.Filters;
 
 namespace BookATableMVC.Controllers
 {
+    [AuthorizationFilter]
     public class RestaurantsController : Controller
     {
         [AuthenticationFilter]
@@ -23,10 +24,10 @@ namespace BookATableMVC.Controllers
             RestaurantListViewModel model = new RestaurantListViewModel();
             model.Restaurants = new RestaurantService().GetAll().ToList();
 
-            model.Pager = new PagerViewModel(model.Restaurants.Count(), page);
-            model.Restaurants = model.Restaurants.Skip((model.Pager.CurrentPage - 1) * model.Pager.ItemsPerPage).Take(model.Pager.ItemsPerPage).ToList();
+            //model.Pager = new PagerViewModel(model.Restaurants.Count(), page);
+            //model.Restaurants = model.Restaurants.Skip((model.Pager.CurrentPage - 1) * model.Pager.ItemsPerPage).Take(model.Pager.ItemsPerPage).ToList();
 
-
+            /*
             ViewBag.searchString = searchString;
             RestaurantService service = new RestaurantService();
             if (!String.IsNullOrEmpty(searchString))
@@ -79,7 +80,7 @@ namespace BookATableMVC.Controllers
                     model.Restaurants = model.Restaurants.OrderBy(s => s.Name).ToList();
                     break;
             }
-            
+            */
 
             return View(model);
         

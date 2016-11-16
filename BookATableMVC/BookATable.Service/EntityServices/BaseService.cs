@@ -33,6 +33,10 @@ namespace BookATableMVC.Services.EntityServices
         {
             return this.Repository.GetAll(filter);
         }
+        public IEnumerable<T> GetAll(int? page, int pagesize)
+        {
+            return this.Repository.GetAll(page, pagesize);
+        }
         public T GetById(int id)
         {
             return this.Repository.GetById(id);

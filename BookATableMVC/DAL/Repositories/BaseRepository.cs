@@ -37,6 +37,10 @@ namespace DAL.Repositories
         {
             return dbSet.Where(filter).ToList();
         }
+        public IEnumerable<T> GetAll(int? page = null, int pageSize = 10)
+        {
+            return dbSet.OrderBy(i => i.Id).Skip(page.Value * pageSize).Take(pageSize).ToList();
+        }
         public virtual T GetById(int id)
         {
             return dbSet.Find(id);
