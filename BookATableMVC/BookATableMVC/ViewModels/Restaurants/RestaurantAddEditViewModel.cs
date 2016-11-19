@@ -32,6 +32,6 @@ namespace BookATableMVC.ViewModels.Restaurants
 
         public string ImagePath { get; set; }
         public HttpPostedFileBase ImageUpload { get; set; }
-
+        
     }
 }

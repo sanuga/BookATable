@@ -13,7 +13,7 @@ using BookATableMVC.Filters;
 
 namespace BookATableMVC.Controllers
 {
-    [AuthorizationFilter]
+//    [AuthorizationFilter]
     public class RestaurantsController : Controller
     {
         [AuthenticationFilter]
@@ -192,5 +192,6 @@ namespace BookATableMVC.Controllers
         service.Delete(model);
         return RedirectToAction("Index");
     }
+        
 }
 }

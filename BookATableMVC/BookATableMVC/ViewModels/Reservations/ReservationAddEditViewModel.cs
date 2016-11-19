@@ -1,27 +1,24 @@
-﻿using System;
+﻿using DAL.Entites;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace DAL.Entites
+namespace BookATableMVC.ViewModels.Reservations
 {
-    public class Reservation:BaseEntity
+    public class ReservationAddEditViewModel
     {
+        public int Id { get; set; }
         [Required]
         public DateTime ReservationTime { get; set; }
         [Required]
+        [Range(1, Int32.MaxValue)]
         public int PeopleCount { get; set; }
         public string Comment { get; set; }
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
-
-        public virtual User User { get; set; }
-        public virtual Restaurant Restaurant { get; set; }
         
-
-
         
     }
 }

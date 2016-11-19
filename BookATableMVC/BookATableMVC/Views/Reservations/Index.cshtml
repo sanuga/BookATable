@@ -1,0 +1,50 @@
+﻿@model BookATableMVC.ViewModels.Reservations.ReservationListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+
+    
+    <tr>
+        <th>
+            @Html.ActionLink("PeopleCount", "Index", new {})
+        </th>
+        <th>
+            @Html.ActionLink("Comment", "Index", new {})
+        </th>
+        <th>
+            @Html.ActionLink("ReservationTime", "Index", new {})
+        </th>
+      
+       
+    </tr>
+@foreach (var item in Model.Reservations) {
+    
+   
+   
+    <tr>
+        <td>@item.PeopleCount</td>
+        <td>@item.Comment</td>
+        <td>@item.ReservationTime</td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+   
+}
+
+</table>
