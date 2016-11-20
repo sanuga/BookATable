@@ -34,15 +34,19 @@ namespace BookATableMVC.Controllers
             if (!id.HasValue)
             {
                 reservation = new Reservation();
-            }
-            ReservationService service = new ReservationService();
-            reservation=service.GetById(id.Value);
-
-            if (reservation==null)
+            }else
             {
-                RedirectToAction("Index");
+                ReservationService service = new ReservationService();
+                reservation = service.GetById(id.Value);
+                if (reservation == null)
+                {
+                    RedirectToAction("Index");
 
+                }
             }
+           
+
+            
             ReservationAddEditViewModel model = new ReservationAddEditViewModel();
             model.Comment = reservation.Comment;
             model.PeopleCount = reservation.PeopleCount;
@@ -56,9 +60,9 @@ namespace BookATableMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit()
+        public ActionResult Edit(ReservationAddEditViewModel model)
         {
-            ReservationAddEditViewModel model = new ReservationAddEditViewModel();
+            
             ReservationService service = new ReservationService();
             TryUpdateModel(model);
             if (!ModelState.IsValid)

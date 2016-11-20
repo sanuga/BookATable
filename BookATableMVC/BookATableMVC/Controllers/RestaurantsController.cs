@@ -118,9 +118,9 @@ namespace BookATableMVC.Controllers
         }
         
         [HttpPost]
-        public ActionResult Edit()
+        public ActionResult Edit(RestaurantAddEditViewModel model)
         {
-            RestaurantAddEditViewModel model = new RestaurantAddEditViewModel();
+            
             RestaurantService service = new RestaurantService();
             TryUpdateModel(model);
             if (!ModelState.IsValid)
