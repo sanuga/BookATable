@@ -6,9 +6,9 @@ using System.Web;
 
 namespace BookATableMVC.ViewModels.Reservations
 {
-    public class ReservationListViewModel
+    public class ReservationListViewModel:BaseAllViewModel<Reservation>
     {
-        public List<Reservation> Reservations { get; set; }
-        public PagerViewModel Pager { get; set; }
+        //public List<Reservation> Reservations { get; set; }
+       // public PagerViewModel Pager { get; set; }
     }
 }

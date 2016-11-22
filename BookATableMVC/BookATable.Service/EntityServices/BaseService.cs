@@ -29,13 +29,9 @@ namespace BookATableMVC.Services.EntityServices
         {
             return this.Repository.GetAll();
         }
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter)
+        public IEnumerable<T> GetAll(Expression<Func<T, Boolean>> expr = null, int page = 0, int itemsPerPage = 0)
         {
-            return this.Repository.GetAll(filter);
-        }
-        public IEnumerable<T> GetAll(int? page, int pagesize)
-        {
-            return this.Repository.GetAll(page, pagesize);
+            return this.Repository.GetAll(expr, page, itemsPerPage);
         }
         public T GetById(int id)
         {
@@ -52,6 +48,10 @@ namespace BookATableMVC.Services.EntityServices
         public void Delete(T entity)
         {
             this.Repository.Delete(entity);
+        }
+        public int Count(Expression<Func<T, Boolean>> expr = null)
+        {
+            return this.Repository.Count();
         }
     }
 }

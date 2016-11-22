@@ -32,14 +32,16 @@ namespace DAL.Repositories
         public virtual IEnumerable<T> GetAll()
         {
             return dbSet.Where(e => e.IsDeleted == false).ToList();
-        } 
-        public virtual IEnumerable<T> GetAll(Expression<Func<T,bool>>filter)
-        {
-            return dbSet.Where(filter).ToList();
         }
-        public IEnumerable<T> GetAll(int? page = null, int pageSize = 10)
+        public IEnumerable<T> GetAll(Expression<Func<T, Boolean>> expr = null, int page = 0, int itemsPerPage = 0)
         {
-            return dbSet.OrderBy(i => i.Id).Skip(page.Value * pageSize).Take(pageSize).ToList();
+            IEnumerable<T> result = dbSet;
+            if (expr != null)
+                result = dbSet.Where(expr);
+            if (page > 0 && itemsPerPage > 0)
+                result = dbSet.OrderBy(i => i.Id).Skip((page - 1) * itemsPerPage).Take(itemsPerPage);
+
+            return result;
         }
         public virtual T GetById(int id)
         {
@@ -84,6 +86,10 @@ namespace DAL.Repositories
             entity.IsDeleted = true;
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
+        }
+        public int Count(Expression<Func<T, Boolean>> expr = null)
+        {
+            return expr == null ? this.dbSet.Count() : this.dbSet.Count(expr);
         }
        
     }

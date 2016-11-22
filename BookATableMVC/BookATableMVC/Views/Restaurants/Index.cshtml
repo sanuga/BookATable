@@ -7,44 +7,21 @@
 <h2>Index</h2>
 @Html.ActionLink("Add New", "Edit", "Restaurants")
 
-<form action="\Restaurants\Index">
-    <p style="font-weight:bold;">
-        Search: @Html.TextBox("SearchString", null, new { @class = "form-control" })
-    </p>
-
-
-
-    <input type="submit" value="Search" />
-
-</form>
-
-
 <table class="table">
     <tr>
     <tr>    
-        <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>         
-        <th>
-            @Html.ActionLink("Address", "Index", new { sortOrder = ViewBag.AddressSortParm })
-        </th> 
+        <th>Name</th>         
+        <th>Address</th> 
         <th>Email</th>
         <th>Phone</th>
-        <th>
-            @Html.ActionLink("Capacity", "Index", new { sortOrder = ViewBag.CapacitySortParm })
-        </th> 
-        <th>
-            @Html.ActionLink("Open Hour", "Index", new { sortOrder = ViewBag.OpenHourSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Close Hour", "Index", new { sortOrder = ViewBag.CloseHourSortParm })
-        </th> 
+        <th>Capacity</th> 
+        <th>Open Hour</th>
+        <th>Close Hour</th> 
         <th>Image</th>
         <th>Actions</th>
-    </tr>
-    
+    </tr>    
 
-@foreach (var item in Model.Restaurants) {
+@foreach (var item in Model.Items) {
     <tr>
         <td>@item.Name</td>
         <td>@item.Address</td>
@@ -78,34 +55,6 @@
 }
 
 </table>
-@*@if (Model.Pager.EndPage > 1)
-{
-    <ul class="pagination">
-        @if (Model.Pager.CurrentPage > 1)
-        {
-            <li>
-                <a href="~/Restaurants/Index">First</a>
-            </li>
-            <li>
-                <a href="~/Restaurants/Index?page=@(Model.Pager.CurrentPage - 1)">Previous</a>
-            </li>
-        }
-
-        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
-        {
-            <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
-                <a href="~/Restaurants/Index?page=@page">@page</a>
-            </li>
-        }
-
-        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
-        {
-            <li>
-                <a href="~/Restaurants/Index?page=@(Model.Pager.CurrentPage + 1)">Next</a>
-            </li>
-            <li>
-                <a href="~/Restaurants/Index?page=@(Model.Pager.TotalPages)">Last</a>
-            </li>
-        }
-    </ul>
-}*@
+<div>
+    @Html.Partial("_PagerPartial", Model.Pager)
+</div>

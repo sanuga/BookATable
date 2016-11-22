@@ -15,28 +15,14 @@
     <tr>
         <th></th>
     </tr>
-
-
-    
     <tr>
-        <th>
-            @Html.ActionLink("PeopleCount", "Index", new {})
-        </th>
-        <th>
-            @Html.ActionLink("Comment", "Index", new {})
-        </th>
-        <th>
-            @Html.ActionLink("ReservationTime", "Index", new {})
-        </th>
-        <th>
-            @Html.ActionLink("Restaurant", "Index", new {})
-        </th>
+        <th>PeopleCount</th>
+        <th>Comment</th>
+        <th>ReservationTime</th>
+        <th>Restaurant</th>
        
     </tr>
-@foreach (var item in Model.Reservations) {
-    
-   
-   
+@foreach (var item in Model.Items) {   
     <tr>
         <td>@item.PeopleCount</td>
         <td>@item.Comment</td>
@@ -51,3 +37,7 @@
 }
 
 </table>
+<div>
+    @Html.Partial("_PagerPartial", Model.Pager)
+</div>
+

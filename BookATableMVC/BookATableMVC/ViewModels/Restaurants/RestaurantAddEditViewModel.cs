@@ -6,9 +6,8 @@ using System.Web;
 
 namespace BookATableMVC.ViewModels.Restaurants
 {
-    public class RestaurantAddEditViewModel
+    public class RestaurantAddEditViewModel:BaseByIdViewModel
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

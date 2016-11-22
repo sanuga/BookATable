@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BookATableMVC.ViewModels.Restaurants
 {
-    public class RestaurantListViewModel
+    public class RestaurantListViewModel:BaseAllViewModel<Restaurant>
     {
-        public List<Restaurant> Restaurants { get; set; }
-        public PagerViewModel  Pager { get; set; }
+       // public List<Restaurant> Restaurants { get; set; }
+       // public PagerViewModel  Pager { get; set; }
     }
 }

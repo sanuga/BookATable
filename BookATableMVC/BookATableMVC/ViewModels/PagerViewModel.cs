@@ -18,17 +18,18 @@ namespace BookATableMVC.ViewModels
         public int StartPage { get; set; }
         public int EndPage { get; set; }
 
-        public PagerViewModel() : this(0, 1, 10, "", "", "")
+        public PagerViewModel()
+            : this(0, 1, 5, "", "", "")
         {
 
         }
-        
+
         public PagerViewModel(int totalItems, int? page, int? pageSize, string prefix, string action, string controller)
         {
             if (pageSize == null || PageSize == 0)
-                pageSize = 10;
+                pageSize = 5;
 
-            // calculate total, start and end pages
+
             var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             var currentPage = page != null ? (int)page : 1;
             var startPage = currentPage - 5;
@@ -57,10 +58,6 @@ namespace BookATableMVC.ViewModels
             Action = action;
             Controller = controller;
         }
-
     }
-
-        
-        
-    }
+}
 
