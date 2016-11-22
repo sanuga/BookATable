@@ -5,6 +5,8 @@
 }
 
 <h2>Edit</h2>
+@Styles.Render("~/Content/book-a-table-style")
+
 
 @using (Html.BeginForm("Edit", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -87,6 +89,8 @@
     </div>
     
 }
+@using System.Web.Optimization
+@Scripts.Render("~/Scripts/book-a-table-script")
 
 <div>
     @Html.ActionLink("Back to List", "Index")

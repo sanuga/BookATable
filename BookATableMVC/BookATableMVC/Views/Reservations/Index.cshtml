@@ -7,8 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Reservation", "Edit","Reservations") 
-    
+   
+    @Html.ActionLink("Create Reservation", "Edit", "Reservations")
       
 </p>
 <table class="table">
@@ -28,7 +28,9 @@
         <th>
             @Html.ActionLink("ReservationTime", "Index", new {})
         </th>
-      
+        <th>
+            @Html.ActionLink("Restaurant", "Index", new {})
+        </th>
        
     </tr>
 @foreach (var item in Model.Reservations) {
@@ -39,7 +41,7 @@
         <td>@item.PeopleCount</td>
         <td>@item.Comment</td>
         <td>@item.ReservationTime</td>
-        
+        <td>@item.RestaurantName</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })

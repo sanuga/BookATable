@@ -24,63 +24,7 @@ namespace BookATableMVC.Controllers
             RestaurantListViewModel model = new RestaurantListViewModel();
             model.Restaurants = new RestaurantService().GetAll().ToList();
 
-            //model.Pager = new PagerViewModel(model.Restaurants.Count(), page);
-            //model.Restaurants = model.Restaurants.Skip((model.Pager.CurrentPage - 1) * model.Pager.ItemsPerPage).Take(model.Pager.ItemsPerPage).ToList();
-
-            /*
-            ViewBag.searchString = searchString;
-            RestaurantService service = new RestaurantService();
-            if (!String.IsNullOrEmpty(searchString))
-            {
-
-                model.Restaurants =service.GetAll(r => r.Name.Contains(searchString)).ToList();
-
-            }
-            else
-            {
-                model.Restaurants = service.GetAll().ToList();
-            }
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.OpenHourSortParm = sortOrder == "Open" ? "open_desc" : "Open";
-            ViewBag.CloseHourSortParm = sortOrder == "Close" ? "close_desc" : "Close";
-            ViewBag.AddressSortParm = sortOrder == "Address" ? "address_desc" : "Address";
-            ViewBag.CapacitySortParm = sortOrder == "Capacity" ? "capacity_desc" : "Capacity";
            
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Name).ToList();
-                    break;
-                case "Open":
-                    model.Restaurants = model.Restaurants.OrderBy(s => s.OpenHour).ToList();
-                    break;
-                case "open_desc":
-                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.OpenHour).ToList();
-                    break;
-                case "Close":
-                    model.Restaurants = model.Restaurants.OrderBy(s => s.CloseHour).ToList();
-                    break;
-                case "close_desc":
-                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.CloseHour).ToList();
-                    break;
-                case "Address":
-                    model.Restaurants = model.Restaurants.OrderBy(s => s.Address).ToList();
-                    break;
-                case "address_desc":
-                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Address).ToList();
-                    break;
-                case "Capacity":
-                    model.Restaurants = model.Restaurants.OrderBy(s => s.Capacity).ToList();
-                    break;
-                case "capacity_desc":
-                    model.Restaurants = model.Restaurants.OrderByDescending(s => s.Capacity).ToList();
-                    break;
-                default:
-                    model.Restaurants = model.Restaurants.OrderBy(s => s.Name).ToList();
-                    break;
-            }
-            */
 
             return View(model);
         
@@ -111,6 +55,7 @@ namespace BookATableMVC.Controllers
             model.Address = restaurant.Address;
             model.Email = restaurant.Email;
             model.Phone = restaurant.Phone;
+            model.Capacity = restaurant.Capacity;
             model.CloseHour = restaurant.CloseHour;
             model.OpenHour = restaurant.OpenHour;
             model.ImagePath = restaurant.ImagePath;
@@ -161,16 +106,17 @@ namespace BookATableMVC.Controllers
                 model.ImagePath = "default.jpg";
             }
 
-
+            
             restaurant.Id = model.Id;
             restaurant.Name = model.Name;
             restaurant.Address = model.Address;
             restaurant.Email = model.Email;
             restaurant.Phone = model.Phone;
+            restaurant.Capacity = model.Capacity;
             restaurant.OpenHour = model.OpenHour;
             restaurant.CloseHour = model.CloseHour;
             restaurant.ImagePath = model.ImagePath;
-
+            
             service.Save(restaurant);
             return RedirectToAction("Index");
         }

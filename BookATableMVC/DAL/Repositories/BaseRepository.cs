@@ -55,7 +55,7 @@ namespace DAL.Repositories
                 entity.CreatedAt = DateTime.Now;
                 entity.UpdatedAt = DateTime.Now;
                 dbSet.Add(entity);
-                db.SaveChanges();
+        db.SaveChanges();
             
             
             

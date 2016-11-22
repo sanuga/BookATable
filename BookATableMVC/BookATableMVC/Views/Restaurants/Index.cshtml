@@ -69,13 +69,16 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id}) |
             @Html.ActionLink("Details", "Details", new { id=item.Id}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id})
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id}) 
+            
+            
+           
         </td>
     </tr>
 }
 
 </table>
-@if (Model.Pager.EndPage > 1)
+@*@if (Model.Pager.EndPage > 1)
 {
     <ul class="pagination">
         @if (Model.Pager.CurrentPage > 1)
@@ -105,4 +108,4 @@
             </li>
         }
     </ul>
-}
+}*@
