@@ -29,8 +29,8 @@ namespace BookATable.Service.EntityServices
             Restaurant restaurant = restService.GetById(reservation.RestaurantId);
             ReservationService service = new ReservationService();
           
-            int totalPeople = service.GetAll(r => r.RestaurantId == reservation.RestaurantId &&
-                                                         !r.IsDeleted && r.ReservationTime == reservation.ReservationTime)
+            int totalPeople = service.GetAll(r => r.RestaurantId == reservation.RestaurantId 
+                                                          && r.ReservationTime == reservation.ReservationTime)
 
                                                          .Select(r => r.PeopleCount).ToList().Sum();
             if (reservation.PeopleCount < (restaurant.Capacity - totalPeople))

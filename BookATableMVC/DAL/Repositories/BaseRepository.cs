@@ -31,7 +31,7 @@ namespace DAL.Repositories
         }
         public virtual IEnumerable<T> GetAll()
         {
-            return dbSet.Where(e => e.IsDeleted == false).ToList();
+            return dbSet.ToList();
         }
         public IEnumerable<T> GetAll(Expression<Func<T, Boolean>> expr = null, int page = 0, int itemsPerPage = 0)
         {
@@ -83,8 +83,7 @@ namespace DAL.Repositories
         public virtual void Delete(T entity)
         {
             entity.UpdatedAt = DateTime.Now;
-            entity.IsDeleted = true;
-            db.Entry(entity).State = EntityState.Modified;
+            db.Entry(entity).State = EntityState.Deleted;
             db.SaveChanges();
         }
         public int Count(Expression<Func<T, Boolean>> expr = null)
