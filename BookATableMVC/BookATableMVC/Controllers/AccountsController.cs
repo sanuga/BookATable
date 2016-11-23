@@ -48,8 +48,6 @@ namespace BookATableMVC.Controllers
         public ActionResult Verify(string guid)
         {
             UserAddEditViewModel model = new UserAddEditViewModel();
-
-
             UserService usersService = new UserService();
             User u = new User();
             u = usersService.GetByGuid(guid);
@@ -67,21 +65,24 @@ namespace BookATableMVC.Controllers
         public ActionResult Verify()
         {
             UserAddEditViewModel model = new UserAddEditViewModel();
-            TryUpdateModel(model);
-
-            User u = new User();
+            TryUpdateModel(model);           
             UserService usersService = new UserService();
-
+            User u = usersService.GetById(model.Id);
             u.Id = model.Id;
-            u.Name = model.Name;
-            u.Password = model.Password;
+            u.Name = model.Name;    
             u.Email = model.Email;
             u.Phone = model.Phone;
-            u.IsVerify = true;
-
-
-            usersService.Save(u);
-            return RedirectToAction("Login", "Accounts");
+            if (model.Password==u.Password)
+            {
+                u.IsVerify = true;
+                usersService.Save(u);
+                return RedirectToAction("Login", "Accounts");
+            }
+            else
+            {
+                return View(model);
+            }
+                                
         }
         
         public ActionResult Login (string redirectUrl)

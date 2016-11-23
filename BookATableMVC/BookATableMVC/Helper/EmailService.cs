@@ -11,6 +11,7 @@ namespace BookATableMVC.Helper
     {
         public static void SendRegistrationEmail(User u)
         {
+            try { 
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("no-reply@management.com");
             mail.Subject = "Registration successfull";
@@ -29,6 +30,11 @@ namespace BookATableMVC.Helper
             #endregion
 
             smtp.Send(mail);
+                }
+            catch (Exception e)
+            {
+                throw e ;
+            }
         }
       
     }
